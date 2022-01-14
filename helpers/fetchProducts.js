@@ -1,4 +1,8 @@
 const fetchProducts = async (query) => {
+  if (!query) {
+    throw new Error('You must provide an url');
+  }
+
   const url = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
 
   try {
@@ -11,7 +15,7 @@ const fetchProducts = async (query) => {
   }
 };
 
-// fetchProducts('computador');
+// fetchProducts();
 
 if (typeof module !== 'undefined') {
   module.exports = {
