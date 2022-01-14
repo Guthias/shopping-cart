@@ -11,5 +11,9 @@ describe('1 - Teste a função fecthProducts', () => {
     await fetchProducts('computador')
     expect(fetch).toHaveBeenCalled()
   })
-  fail('Teste incompleto');
+  
+  it('Verifica-se a API do Mercado Livre está sendo consultada', async () => {
+    await fetchProducts('computador');
+    expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/sites/MLB/search?q=computador')
+  });
 });
