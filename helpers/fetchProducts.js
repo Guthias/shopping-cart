@@ -7,7 +7,7 @@ const fetchProducts = async (query) => {
     // console.log(data.results);
     return data;
   } catch (error) {
-    throw new Error('');
+    throw new Error(error);
   }
 };
 

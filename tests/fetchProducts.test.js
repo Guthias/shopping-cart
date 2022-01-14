@@ -20,5 +20,11 @@ describe('1 - Teste a função fecthProducts', () => {
   it('Verifica-se está sendo retornado o Objeto esperado', async () => {
     const consulta = await fetchProducts('computador');
     expect(consulta).toBe(computadorSearch);
-  })
+  });
+
+  it('Verifica-se fetchProducts for chamado sem nenhum parametro, ira ter um erro', async () => {
+    const errorMessage = 'You must provide an url'
+    const consulta = await fetchProducts('computador');
+    expect(consulta).toEqual(new Error(errorMessage));
+  });
 });
