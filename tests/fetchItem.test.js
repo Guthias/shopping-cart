@@ -15,10 +15,15 @@ describe('2 - Teste a função fecthItem', () => {
   it('Verifica-se a APi do Mercado Livre está sendo consultada na function fetchItem', async () => {
     await fetchItem('MLB1615760527');
     expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1615760527');
-  })
+  });
 
   it('Verificando se fetchItem retorna o resultado esperado', async () => {
     const consulta = await fetchItem('MLB1615760527');
     expect(consulta).toEqual(item);
-  })
+  });
+
+  it('Verificando se fetchItem retorna o resultado esperado', async () => {
+    const errorMessage = new Error('You must provide an url');
+    fetchItem().catch(error => expect(error).toEqual(errorMessage));
+  });
 });
