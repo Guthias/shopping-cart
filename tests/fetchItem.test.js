@@ -16,4 +16,9 @@ describe('2 - Teste a função fecthItem', () => {
     await fetchItem('MLB1615760527');
     expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1615760527');
   })
+
+  it('Verificando se fetchItem retorna o resultado esperado', async () => {
+    const consulta = await fetchItem('MLB1615760527');
+    expect(consulta).toEqual(item);
+  })
 });
