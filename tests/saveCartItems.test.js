@@ -12,7 +12,6 @@ describe('4 - Teste a função saveCartItems', () => {
   it('Verifica-se saveCartItems ao receber uma String salva exatamente o conteudo recebido', () => {
     const content = '<ol><li>Item</li></ol>';
     saveCartItems(content);
-    expect(localStorage.setItem).toHaveBeenCalledWith('cartItem', content);
+    expect(localStorage.setItem).toHaveBeenCalledWith('cartItems', content);
   });
-  fail('Teste vazio');
 });
