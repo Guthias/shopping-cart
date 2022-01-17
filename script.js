@@ -1,3 +1,4 @@
+const body = document.getElementById('body');
 const productArea = document.getElementById('product-area');
 const cartArea = document.getElementById('cart-area');
 const cartPrice = document.getElementById('total-price');
@@ -103,11 +104,16 @@ async function getProductsInfo() {
   }, []);
 }
 
+function removeLoading() {
+  document.getElementById('loading').remove();
+}
+
 async function createItemList() {
   const products = await getProductsInfo();
   products.forEach((product) => {
     productArea.appendChild(createProductItemElement(product));
   });
+  await removeLoading();
 }
 
 const loadSavedCart = () => {
@@ -126,9 +132,18 @@ const removeAllProductsFromCart = () => {
   saveCartItems(cartItems);
 };
 
+function showLoading() {
+  const element = document.createElement('div');
+  element.id = 'loading';
+  element.className = 'loading';
+  element.innerText = 'Carregando...';
+  body.appendChild(element);
+}
+
 clearCart.addEventListener('click', removeAllProductsFromCart);
 
 window.onload = () => {
+  showLoading();
   createItemList();
   loadSavedCart();
 };
