@@ -1,6 +1,6 @@
 const productArea = document.getElementById('product-area');
 const cartArea = document.getElementById('cart-area');
-const cartItems = [];
+let cartItems = [];
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -96,10 +96,11 @@ async function createItemList() {
   });
 }
 
-function loadSavedCart() {
+const loadSavedCart = () => {
   const savedItems = getSavedCartItems();
-  console.log(savedItems);
-}
+  cartItems = JSON.parse(savedItems); // Atualizando registro local do carrinho
+  cartItems.forEach((item) => cartArea.appendChild(createCartItemElement(item)));
+};
 
 window.onload = () => {
   createItemList();
