@@ -114,6 +114,7 @@ const loadSavedCart = () => {
   if (!savedItems) return;
   cartItems = JSON.parse(savedItems); // Atualizando registro local do carrinho
   cartItems.forEach((item) => cartArea.appendChild(createCartItemElement(item)));
+  refreshCartPrice();
 };
 
 window.onload = () => {
