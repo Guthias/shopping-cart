@@ -1,6 +1,7 @@
 const productArea = document.getElementById('product-area');
 const cartArea = document.getElementById('cart-area');
 const cartPrice = document.getElementById('total-price');
+const clearCart = document.getElementById('clear-cart');
 
 let cartItems = [];
 
@@ -116,6 +117,16 @@ const loadSavedCart = () => {
   cartItems.forEach((item) => cartArea.appendChild(createCartItemElement(item)));
   refreshCartPrice();
 };
+
+const removeAllProductsFromCart = () => {
+  // Source: https://medium.com/front-end-weekly/remove-all-children-of-the-node-in-javascript-968ad8f120eb
+  cartArea.querySelectorAll('*').forEach((element) => element.remove());
+  cartItems = [];
+  refreshCartPrice();
+  saveCartItems(cartItems);
+};
+
+clearCart.addEventListener('click', removeAllProductsFromCart);
 
 window.onload = () => {
   createItemList();
