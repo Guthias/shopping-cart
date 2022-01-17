@@ -8,4 +8,9 @@ describe('4 - Teste a função getSavedCartItems', () => {
     getSavedCartItems();
     expect(localStorage.getItem).toHaveBeenCalled();
   });
+
+  it('Verifica-se, getSavedCartItems acessa a chave correta no localStorage', () => {
+    getSavedCartItems();
+    expect(localStorage.getItem).toHaveBeenCalledWith('cartItems');
+  });
 });
