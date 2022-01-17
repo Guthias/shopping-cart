@@ -1,5 +1,7 @@
 const productArea = document.getElementById('product-area');
 const cartArea = document.getElementById('cart-area');
+const cartPrice = document.getElementById('total-price');
+
 let cartItems = [];
 
 function createProductImageElement(imageSource) {
@@ -54,10 +56,21 @@ const getProductDetails = async (productID) => {
     salePrice: response.price };
 };
 
+const refreshCartPrice = () => {
+  const totalPrice = cartItems.reduce((acc, item) => {
+    let sum = acc;
+    sum += item.salePrice;
+    return sum;
+  }, 0);
+
+  cartPrice.innerText = totalPrice.toFixed(2); 
+};
+
 async function addProductToCart(event) {
   const productID = getSkuFromProductItem(event.target.parentElement);
   const productDetails = await getProductDetails(productID);
   cartItems.push(productDetails);
+  await refreshCartPrice();
   saveCartItems(cartItems);
   cartArea.appendChild(createCartItemElement(productDetails));
 }
