@@ -25,6 +25,11 @@ function createCustomEventElement(element, className, text, event) {
 }
 
 function cartItemClickListener(event) {
+  const item = cartItems.find(({ sku, name, salePrice }) => 
+    `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}` === event.target.innerText);
+  const itemIndex = cartItems.indexOf(item);
+  cartItems.splice(itemIndex, 1);
+  saveCartItems(cartItems);
   event.target.remove();
 }
 
