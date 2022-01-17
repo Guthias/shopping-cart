@@ -23,6 +23,15 @@ function createCustomEventElement(element, className, text, event) {
   return e;
 }
 
+function getSkuFromProductItem(item) {
+  return item.querySelector('span.item__sku').innerText;
+}
+
+function addProductToCart(event) {
+  const productID = getSkuFromProductItem(event.target.parentElement);
+  console.log(productID);
+}
+
 function createProductItemElement({ sku, name, image }) {
   const section = document.createElement('section');
   section.className = 'item';
@@ -38,13 +47,6 @@ function createProductItemElement({ sku, name, image }) {
   return section;
 }
 
-function getSkuFromProductItem(item) {
-  return item.querySelector('span.item__sku').innerText;
-}
-
-function addProductToCart(event) {
-  console.log(event.target);
-}
 function cartItemClickListener(event) {
   // coloque seu código aqui
 }
