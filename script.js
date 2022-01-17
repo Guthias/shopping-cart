@@ -28,12 +28,18 @@ function createCustomEventElement(element, className, text, event) {
   return e;
 }
 
+const refreshCartPrice = () => {
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.salePrice, 0);
+  cartPrice.innerText = totalPrice; 
+};
+
 function cartItemClickListener(event) {
   const item = cartItems.find(({ sku, name, salePrice }) => 
     `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}` === event.target.innerText);
   const itemIndex = cartItems.indexOf(item);
   cartItems.splice(itemIndex, 1);
   saveCartItems(cartItems);
+  refreshCartPrice();
   event.target.remove();
 }
 
@@ -56,16 +62,6 @@ const getProductDetails = async (productID) => {
     sku: response.id,
     name: response.title,
     salePrice: response.price };
-};
-
-const refreshCartPrice = () => {
-  const totalPrice = cartItems.reduce((acc, item) => {
-    let sum = acc;
-    sum += item.salePrice;
-    return sum;
-  }, 0);
-
-  cartPrice.innerText = totalPrice.toFixed(2); 
 };
 
 async function addProductToCart(event) {
