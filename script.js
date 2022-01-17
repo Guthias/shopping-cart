@@ -96,6 +96,12 @@ async function createItemList() {
   });
 }
 
+function loadSavedCart() {
+  const savedItems = getSavedCartItems();
+  console.log(savedItems);
+}
+
 window.onload = () => {
   createItemList();
+  loadSavedCart();
 };
