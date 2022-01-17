@@ -98,6 +98,7 @@ async function createItemList() {
 
 const loadSavedCart = () => {
   const savedItems = getSavedCartItems();
+  if (!savedItems) return;
   cartItems = JSON.parse(savedItems); // Atualizando registro local do carrinho
   cartItems.forEach((item) => cartArea.appendChild(createCartItemElement(item)));
 };
