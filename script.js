@@ -1,5 +1,6 @@
 const productArea = document.getElementById('product-area');
 const cartArea = document.getElementById('cart-area');
+const cartItems = [];
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -51,6 +52,8 @@ const getProductDetails = async (productID) => {
 async function addProductToCart(event) {
   const productID = getSkuFromProductItem(event.target.parentElement);
   const productDetails = await getProductDetails(productID);
+  cartItems.push(productDetails);
+  saveCartItems(cartItems);
   cartArea.appendChild(createCartItemElement(productDetails));
 }
 
