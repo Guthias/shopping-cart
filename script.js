@@ -88,16 +88,22 @@ function createProductItemElement({ sku, name, image }) {
   return section;
 }
 
+async function getGoodQualityPicture(productID) {
+  const response = await fetchItem(productID);
+  return response.pictures[0].url;
+}
+
 async function getProductsInfo() {
   const { results } = await fetchProducts('computador');
-  
-  return results.reduce((acc, result) => {
-    acc.push({
-      sku: result.id,
-      name: result.title,
-      image: result.thumbnail });
-    return acc;
-  }, []);
+
+  const pictureArray = results.map(({ id }) => getGoodQualityPicture(id));
+  const pictures = await Promise.all(pictureArray);
+
+  return results.map((result, index) => ({ 
+    sku: result.id,
+    name: result.title,
+    image: pictures[index], 
+  }));
 }
 
 function removeLoading() {
@@ -109,7 +115,7 @@ async function createItemList() {
   products.forEach((product) => {
     productArea.appendChild(createProductItemElement(product));
   });
-  await removeLoading();
+  removeLoading();
 }
 
 const loadSavedCart = () => {
