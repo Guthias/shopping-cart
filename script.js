@@ -33,7 +33,7 @@ const refreshCartPrice = () => {
   cartPrice.innerText = totalPrice; 
 };
 
-function cartItemClickListener(event) {
+function deleteItemFromCart(event) {
   const item = cartItems.find(({ sku, name, salePrice }) => 
     `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}` === event.target.innerText);
   const itemIndex = cartItems.indexOf(item);
@@ -43,12 +43,42 @@ function cartItemClickListener(event) {
   event.target.remove();
 }
 
-function createCartItemElement({ sku, name, salePrice }) {
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
-  return li;
+// <li class="cart-item">
+//  <img class="cart-image" src="http://http2.mlstatic.com/D_618178-MLB46611223438_072021-O.jpg">
+//   <div class="cart-product-info-area">
+//    <span class="cart-product-name">Pc Computador Cpu Core I5 650 + Ssd 240gb, 8gb Memória Ram</span>
+//    <div class="cart-product-row">
+//      <span class="cart-product-price">R$ 1499,99</span>
+//     </div>
+//     <div class="cart-product-id">MLB1656151784</div>
+//  </div>
+//  <div class="cart-delete-product">
+//    <i class="material-icons">delete</i>
+//  </div>
+// </li>
+
+// eslint-disable-next-line max-lines-per-function
+function createCartItemElement({ sku, name, salePrice, thumbnail }) {
+  const cartItem = document.createElement('li');
+  cartItem.className = 'cart-item';
+  const image = document.createElement('img');
+  image.className = 'cart-image';
+  image.src = thumbnail;
+  cartItem.appendChild(image);
+  cartItem.innerHTML += `
+  <div class="cart-product-info-area">
+   <span class="cart-product-name">${name}</span>
+   <div class="cart-product-row">
+     <span class="cart-product-price">R$ ${salePrice.toFixed(2)}</span>
+    </div>
+    <div class="cart-product-id">${sku}</div>
+ </div>`;
+  const deleteCartItem = document.createElement('div');
+  deleteCartItem.className = 'cart-delete-product';
+  deleteCartItem.innerHTML = '<i class="material-icons">delete</i>';
+  deleteCartItem.addEventListener('click', deleteItemFromCart);
+  cartItem.appendChild(deleteCartItem);
+  return cartItem;
 }
 
 function getSkuFromProductItem(item) {
@@ -61,7 +91,9 @@ const getProductDetails = async (productID) => {
   return {
     sku: response.id,
     name: response.title,
-    salePrice: response.price };
+    salePrice: response.price,
+    thumbnail: response.thumbnail,
+  };
 };
 
 async function addProductToCart(event) {
