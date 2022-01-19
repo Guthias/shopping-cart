@@ -34,28 +34,19 @@ const refreshCartPrice = () => {
 };
 
 function deleteItemFromCart(event) {
-  const item = cartItems.find(({ sku, name, salePrice }) => 
-    `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}` === event.target.innerText);
+  let cartItem = event.target.parentElement;
+  while (cartItem.className !== 'cart-item') {
+    cartItem = cartItem.parentElement;
+  }
+  const productID = cartItem.querySelector('.cart-product-id').innerText;
+  
+  const item = cartItems.find(({ sku }) => sku === productID);
   const itemIndex = cartItems.indexOf(item);
   cartItems.splice(itemIndex, 1);
   saveCartItems(cartItems);
   refreshCartPrice();
-  event.target.remove();
+  cartItem.remove();
 }
-
-// <li class="cart-item">
-//  <img class="cart-image" src="http://http2.mlstatic.com/D_618178-MLB46611223438_072021-O.jpg">
-//   <div class="cart-product-info-area">
-//    <span class="cart-product-name">Pc Computador Cpu Core I5 650 + Ssd 240gb, 8gb Memória Ram</span>
-//    <div class="cart-product-row">
-//      <span class="cart-product-price">R$ 1499,99</span>
-//     </div>
-//     <div class="cart-product-id">MLB1656151784</div>
-//  </div>
-//  <div class="cart-delete-product">
-//    <i class="material-icons">delete</i>
-//  </div>
-// </li>
 
 // eslint-disable-next-line max-lines-per-function
 function createCartItemElement({ sku, name, salePrice, thumbnail }) {
