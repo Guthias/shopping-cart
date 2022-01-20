@@ -17,40 +17,30 @@
     <script src="script.js" defer></script>
   </head>
   <body id="body">
-    <header class="header">
-      <div class="container-title">
-        <span class="title"><strong>trybe</strong>shopping</span>
-      </div>
-      <i class="material-icons" style="font-size:45px;color:white">shopping_cart</i>
-      <div class="container-cartTitle">
-        <span class="cart__title">Meu carrinho</span>
-      </div>
-    </header>
-    <section class="container">
-      <section id="product-area" class="items"></section>
-      <section class="cart">
-        <ol id="cart-area" class="cart-area cart__items">
-          <!-- TEMPLATE DE PRODUTO
-          <li class="cart-item">
-            <img class="cart-image" src="http://http2.mlstatic.com/D_618178-MLB46611223438_072021-O.jpg">
-            <div class="cart-product-info-area">
-              <span class="cart-product-name">Pc Computador Cpu Core I5 650 + Ssd 240gb, 8gb Memória Ram</span>
-              <div class="cart-product-row">
-                <span class="cart-product-price">R$ 1499,99</span>
-              </div>
-              <div class="cart-product-id">MLB1656151784</div>
-            </div>
-            <div class="cart-delete-product material-icons">
-              delete
-            </div>
-          </li> -->
-        </ol>
-        
-        <button id="clear-cart" class="empty-cart">Esvaziar carrinho</button>
-        <div class="cart-info-area">
-          Preço: <span id="total-price" class="total-price">0</span>
+    <div class="main-container">
+      <header class="header">
+        <div class="container-title">
+          <span class="title"><strong>Guthias</strong>Shopping</span>
         </div>
-      </section>
-    </section>
+        <i class="material-icons" style="font-size:45px;color:white">shopping_cart</i>
+      </header>
+
+      <section id="product-area" class="product-area"></section>
+    </div>
+
+    <div class="cart-container">
+      <div class="header-cart-title">
+        <span class="cart-title">Meu Carrinho</span>
+      </div>
+
+      <div class="cart">
+        <ol id="cart-area" class="cart-area cart__items"></ol>
+
+        <div class="cart-info-area">
+          <strong>Subtotal:</strong><span id="total-price" class="total-price">0</span>
+        </div>
+        <button id="clear-cart" class="empty-cart">Esvaziar carrinho</button>
+      </div>
+    </div>
   </body>
 </html>

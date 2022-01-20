@@ -5,21 +5,23 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: rgb(246, 246, 246);
 }
 
 .header {
   position: relative;
-  background-color: rgb(3, 52, 45);
+  background-color: rgb(25, 32, 86);
   display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
   align-items: center;
   width: 100%;
   height: 60px;
-}
-
-.container-title {
-  width: 80%;
 }
 
 .title {
@@ -28,40 +30,30 @@ body {
   padding-left: 30px;
 }
 
-.container-cartTitle {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background-color: rgb(10, 118, 79);
-  width: 40%;
-  height: 100%;
-  margin-left: 30px;
-}
-
-.container-cartTitle span {
+.header-cart-title span {
   z-index: 1;
 }
 
-.container-cartTitle:after {
+.header-cart-title:after {
   content: '';
   position: absolute;
   top: 15px;
   right: 61.5%;
   width: 39.5%;
   height: 15px;
-  background: rgb(10, 118, 79);
+  background: rgb(4, 104, 191);
   transform: skew(-45deg);
   z-index: 0;
 }
 
-.container-cartTitle:before {
+.header-cart-title:before {
   content: '';
   position: absolute;
   top: 30px;
   right: 61.5%;
   width: 39.5%;
   height: 15px;
-  background: rgb(10, 118, 79);
+  background: rgb(4, 104, 191);
   transform: skew(45deg);
   z-index: 0;
 }
@@ -83,12 +75,14 @@ body {
   color: white;
 }
 
-.items {
+.product-area {
   display: flex;
   flex-basis: 70%;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 40px 0;
+  overflow-y: scroll;
+  flex-grow:1;
+  display: flex;
 }
 
 .item {
@@ -133,7 +127,6 @@ body {
   flex-flow: column wrap;
   background-color: rgb(241, 241, 238);
   height: 100vh;
-  border-left: 2px solid rgb(10, 118, 79);
 }
 
 .cart .cart__items {
@@ -226,4 +219,46 @@ body {
 
 .cart-item:hover .cart-delete-product {
   right: 0;
+}
+
+#body {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-container {
+  position: relative;
+  height: 100%;
+  width: 500px;
+  border-left: 2px solid rgb(4, 104, 191);
+}
+
+.header-cart-title {
+  height: 60px;
+  font-weight: 700;
+  background-color: rgb(4, 104, 191);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-title {
+  color: white;
+  font-size: 28px;
+  padding-left: 35px;
+  font-weight: 700;
+}
+
+.cart-info-area {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 22px;
 }
