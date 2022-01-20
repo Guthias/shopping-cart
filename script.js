@@ -30,7 +30,7 @@ function createCustomEventElement(element, className, text, event) {
 
 const refreshCartPrice = () => {
   const totalPrice = cartItems.reduce((acc, item) => acc + item.salePrice, 0);
-  cartPrice.innerText = totalPrice; 
+  cartPrice.innerText = totalPrice.toFixed(2); 
 };
 
 function deleteItemFromCart(event) {

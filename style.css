@@ -181,6 +181,7 @@ body {
 
 .cart-item {
   display: flex;
+  min-height: 75px;
   height: 75px;
   width: 100%;
   align-items: center;
