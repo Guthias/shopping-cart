@@ -90,11 +90,44 @@ body {
   display: flex;
   flex-direction: column;
   height: auto;
-  margin: 5px;
+  padding: 20px 10px;
   width: 200px;
-  border: 2px solid rgb(234, 234, 233);
+  border: 1px solid rgb(104, 104, 104);
   border-radius: 5px;
   box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+  /* box-shadow: 0 0 0 rgba(0, 0, 0, 0.4); */
+  transition: all ease-in-out 0.1s;
+}
+
+.item:hover {
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.4);
+}
+.item-border {
+  padding: 10px;
+}
+
+.item-sku {
+  display: none;
+}
+
+.item-price {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.item-image {
+  object-fit: contain;
+  height: 200px;
+}
+
+.item-title {
+  overflow: hidden;
+  height: 55px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .item .item__sku {

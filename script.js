@@ -168,7 +168,7 @@ function showLoading() {
 clearCart.addEventListener('click', removeAllProductsFromCart);
 
 window.onload = () => {
-  showLoading();
-  createItemList();
-  loadSavedCart();
+  // showLoading();
+  // createItemList();
+  // loadSavedCart();
 };
