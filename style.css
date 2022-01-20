@@ -172,6 +172,12 @@ body {
   flex-direction: column;
 }
 
+.cart-product-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 34px;
+}
+
 .cart-product-row {
   display: flex;
   margin-top: 10px;
