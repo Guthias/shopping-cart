@@ -114,6 +114,7 @@ body {
 
 .item-price {
   font-size: 18px;
+  margin-bottom: 10px;
   font-weight: 700;
   text-align: center;
 }

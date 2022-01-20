@@ -8,7 +8,7 @@ let cartItems = [];
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
-  img.className = 'item__image';
+  img.className = 'item-image';
   img.src = imageSource;
   return img;
 }
@@ -73,7 +73,7 @@ function createCartItemElement({ sku, name, salePrice, thumbnail }) {
 }
 
 function getSkuFromProductItem(item) {
-  return item.querySelector('span.item__sku').innerText;
+  return item.querySelector('span.item-sku').innerText;
 }
 
 const getProductDetails = async (productID) => {
@@ -96,17 +96,21 @@ async function addProductToCart(event) {
   cartArea.appendChild(createCartItemElement(productDetails));
 }
 
-function createProductItemElement({ sku, name, image }) {
+function createProductItemElement({ sku, name, image, price }) {
   const section = document.createElement('section');
-  section.className = 'item';
+  section.className = 'item-border';
 
-  section.appendChild(createCustomElement('span', 'item__sku', sku));
-  section.appendChild(createCustomElement('span', 'item__title', name));
-  section.appendChild(createProductImageElement(image));
-  section.appendChild(
-    createCustomEventElement('button', 'item__add', 'Adicionar ao carrinho!', addProductToCart),
+  const productItem = document.createElement('div');
+  productItem.className = 'item';
+  
+  productItem.appendChild(createCustomElement('span', 'item-sku', sku));
+  productItem.appendChild(createProductImageElement(image));
+  productItem.appendChild(createCustomElement('span', 'item-title', name));
+  productItem.appendChild(createCustomElement('span', 'item-price', `R$ ${price}`));
+  section.appendChild(productItem);
+  productItem.appendChild(
+    createCustomEventElement('button', 'item__add', 'Adicionar ao carrinho', addProductToCart),
   );
-  // section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
 
   return section;
 }
@@ -125,7 +129,8 @@ async function getProductsInfo() {
   return results.map((result, index) => ({ 
     sku: result.id,
     name: result.title,
-    image: pictures[index], 
+    image: pictures[index],
+    price: result.price.toFixed(2),
   }));
 }
 
@@ -168,7 +173,7 @@ function showLoading() {
 clearCart.addEventListener('click', removeAllProductsFromCart);
 
 window.onload = () => {
-  // showLoading();
-  // createItemList();
-  // loadSavedCart();
+  showLoading();
+  createItemList();
+  loadSavedCart();
 };
