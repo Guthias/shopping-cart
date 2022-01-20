@@ -147,13 +147,19 @@ body {
   width: 100%;
 }
 
-.item .item__add {
-  background-color: rgb(5, 52, 219);
+.item-add {
+  background-color: rgb(4, 104, 191);
   border: 0;
+  font-weight: 700;
   cursor: pointer;
   margin: 0;
   padding: 10px;
   color: white;
+  transition: all ease-in-out 0.2s;
+}
+
+.item-add:hover {
+  background-color: rgb(6, 59, 105);
 }
 
 .cart {
@@ -175,8 +181,18 @@ body {
   width: 170px;
   height: 35px;
   margin: 0 auto;
-  border: 2px solid rgb(5, 52, 219);
+  font-weight: 700;
+  color: rgb(4, 104, 191);
+  cursor: pointer;
+  text-transform: uppercase;
+  border: 2px solid rgb(4, 104, 191);
   background-color: rgb(249, 249, 246);
+  transition: all ease-in-out 0.2s;
+}
+
+.empty-cart:hover {
+  background-color: rgb(4, 104, 191);
+  color: white;
 }
 
 .loading {
@@ -186,7 +202,9 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 1000;
-  background-color: rgb(3, 52, 45);
+  font-weight: 700;
+  user-select: none;
+  background-color: rgb(4, 104, 191);
   color: white;
   display: flex;
   font-size: 40px;

@@ -109,7 +109,7 @@ function createProductItemElement({ sku, name, image, price }) {
   productItem.appendChild(createCustomElement('span', 'item-price', `R$ ${price}`));
   section.appendChild(productItem);
   productItem.appendChild(
-    createCustomEventElement('button', 'item__add', 'Adicionar ao carrinho', addProductToCart),
+    createCustomEventElement('button', 'item-add', 'Adicionar ao carrinho', addProductToCart),
   );
 
   return section;
