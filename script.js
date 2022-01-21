@@ -169,7 +169,9 @@ function showLoading() {
   const element = document.createElement('div');
   element.id = 'loading';
   element.className = 'loading';
-  element.innerText = 'Carregando...';
+  element.innerHTML = `<div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>`;
   body.appendChild(element);
 }
 
