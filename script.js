@@ -183,7 +183,7 @@ function loadProducts(query) {
 
 function searchProductInput(event) {
   if (event.key !== 'Enter') return;
-  const inputText = event.target.value;
+  const inputText = encodeURIComponent(event.target.value);
   loadProducts(inputText);
 }
 
