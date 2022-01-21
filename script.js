@@ -4,6 +4,8 @@ const cartArea = document.getElementById('cart-area');
 const cartPrice = document.getElementById('total-price');
 const clearCart = document.getElementById('clear-cart');
 const searchInput = document.getElementById('search-input');
+const toggleCartButton = document.getElementById('toggle-cart');
+const cartContainer = document.getElementById('cart-container');
 
 let cartItems = [];
 
@@ -187,6 +189,11 @@ function searchProductInput(event) {
   loadProducts(inputText);
 }
 
+function toggleCart() {
+  cartContainer.classList.toggle('hidden');
+}
+
+toggleCartButton.addEventListener('click', toggleCart);
 clearCart.addEventListener('click', removeAllProductsFromCart);
 searchInput.addEventListener('keyup', searchProductInput);
 

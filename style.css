@@ -292,11 +292,22 @@ body {
   flex-direction: column;
 }
 
+#toggle-cart {
+  cursor: pointer;
+  user-select: none;
+}
+
 .cart-container {
   position: relative;
   height: 100%;
   width: 500px;
+  overflow: hidden;
+  transition: all ease-in-out 0.2s;
   border-left: 2px solid rgb(4, 104, 191);
+}
+
+.cart-container.hidden {
+  width: 0;
 }
 
 .header-cart-title {
