@@ -51,7 +51,6 @@ function deleteItemFromCart(event) {
   cartItem.remove();
 }
 
-// eslint-disable-next-line max-lines-per-function
 function createCartItemElement({ sku, name, salePrice, thumbnail }) {
   const cartItem = document.createElement('li');
   cartItem.className = 'cart-item';
@@ -59,14 +58,10 @@ function createCartItemElement({ sku, name, salePrice, thumbnail }) {
   image.className = 'cart-image';
   image.src = thumbnail;
   cartItem.appendChild(image);
-  cartItem.innerHTML += `
-  <div class="cart-product-info-area">
+  cartItem.innerHTML += `<div class="cart-product-info-area">
    <span class="cart-product-name">${name}</span>
-   <div class="cart-product-row">
-     <span class="cart-product-price">R$ ${salePrice.toFixed(2)}</span>
-    </div>
-    <div class="cart-product-id">${sku}</div>
- </div>`;
+   <div class="cart-product-row"><span class="cart-product-price">R$ ${salePrice.toFixed(2)}</span>
+   </div><div class="cart-product-id">${sku}</div></div>`;
   const deleteCartItem = document.createElement('div');
   deleteCartItem.className = 'cart-delete-product';
   deleteCartItem.innerHTML = '<i class="material-icons">delete</i>';
