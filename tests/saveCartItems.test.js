@@ -1,6 +1,5 @@
 const localStorageSimulator = require('../mocks/localStorageSimulator');
 const saveCartItems = require('../helpers/saveCartItems');
-const { stringify } = require('mocha/lib/utils');
 
 localStorageSimulator('setItem');
 

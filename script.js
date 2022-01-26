@@ -43,9 +43,7 @@ function deleteItemFromCart(event) {
   }
   const productID = cartItem.querySelector('.cart-product-id').innerText;
   
-  const item = cartItems.find(({ sku }) => sku === productID);
-  const itemIndex = cartItems.indexOf(item);
-  cartItems.splice(itemIndex, 1);
+  cartItems.find(({ sku }, index) => sku === productID && cartItems.splice(index, 1));
   saveCartItems(cartItems);
   refreshCartPrice();
   cartItem.remove();
@@ -75,18 +73,12 @@ function getSkuFromProductItem(item) {
 }
 
 const getProductDetails = async (productID) => {
-  const response = await fetchItem(productID);
-
-  return {
-    sku: response.id,
-    name: response.title,
-    salePrice: response.price,
-    thumbnail: response.thumbnail,
-  };
+  const { id: sku, title: name, price: salePrice, thumbnail } = await fetchItem(productID);
+  return { sku, name, salePrice, thumbnail };
 };
 
-async function addProductToCart(event) {
-  const productID = getSkuFromProductItem(event.target.parentElement);
+async function addProductToCart({ target }) {
+  const productID = getSkuFromProductItem(target.parentElement);
   const productDetails = await getProductDetails(productID);
   cartItems.push(productDetails);
   await refreshCartPrice();
